@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
+import Carousel, {Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/styles.css";
 
 const TopCarsContainer = styled.div`
     ${tw`
@@ -37,11 +39,50 @@ const CarsContainer = styled.div`
         md:mt-10
     `};
 `;
-
 export function TopCars() {
-    return <TopCarsContainer>
+    const [current, setCurrent] = useState(0);
+    return (
+      <TopCarsContainer>
         <Title>Explore Our Top Deals</Title>
-        <CarsContainer>
-        </CarsContainer>
-    </TopCarsContainer>
-}
+          <CarsContainer>
+            <Carousel
+              value={current}
+              onChange={setCurrent}
+              slides={cars}
+              plugins={[
+                "clickToChange",
+                {
+                  resolve: slidesToShowPlugin,
+                  options: {
+                    numberOfSlides: 3,
+                  },
+                },
+              ]}
+              breakpoints={{
+                640: {
+                  plugins: [
+                    {
+                      resolve: slidesToShowPlugin,
+                      options: {
+                        numberOfSlides: 1,
+                      },
+                    },
+                  ],
+                },
+                900: {
+                  plugins: [
+                    {
+                      resolve: slidesToShowPlugin,
+                      options: {
+                        numberOfSlides: 2,
+                      },
+                    },
+                  ],
+                },
+              }}
+            />
+            <Dots value={current} onChange={setCurrent} number={numberOfDots} />
+          </CarsContainer>
+      </TopCarsContainer>
+    );
+  }

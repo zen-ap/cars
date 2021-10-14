@@ -6,6 +6,7 @@ import tw from "twin.macro";
 import { ICar } from "../../../typings/cars";
 import { Button } from "../button";
 
+
 interface ICarProps extends ICar {}
 
 const CarContainer = styled.div`
