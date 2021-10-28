@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import Carousel, {Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/styles.css";
+import "@brainhubeu/react-carousel/lib/style.css";
 
 const TopCarsContainer = styled.div`
     ${tw`
